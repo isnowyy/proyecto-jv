@@ -1,0 +1,1078 @@
+/* ================================================
+   ESTILOS.CSS — Hotel El Rincón del Carmen
+   Diseño Mobile First: primero se diseña para móvil,
+   luego se agranda para pantallas más grandes con
+   @media queries al final del archivo.
+   ================================================ */
+
+
+/* ===== VARIABLES DE COLOR =====
+   Las variables CSS se declaran en :root y se pueden
+   reusar en todo el archivo con var(--nombre) */
+:root {
+  --primario:       #4A2C17;   /* Café oscuro - color principal */
+  --primario-claro: #7A4928;   /* Café medio */
+  --dorado:         #C9963B;   /* Dorado - color de acento */
+  --crema:          #F5EDD8;   /* Crema claro - fondos suaves */
+  --fondo:          #FFF9F0;   /* Blanco cálido - fondo de la página */
+  --texto:          #2C1810;   /* Color del texto principal */
+  --gris:           #888888;   /* Texto secundario / subtítulos */
+  --blanco:         #FFFFFF;
+  --exito:          #27ae60;   /* Verde para mensajes de éxito */
+  --peligro:        #e74c3c;   /* Rojo para cancelar / errores */
+  --borde-radio:    10px;      /* Redondez de las esquinas */
+  --sombra:         0 2px 15px rgba(0, 0, 0, 0.10); /* Sombra suave */
+  --sombra-fuerte:  0 5px 25px rgba(0, 0, 0, 0.20); /* Sombra más marcada */
+  --transicion:     all 0.3s ease; /* Velocidad de las animaciones */
+}
+
+
+/* ===== RESET BÁSICO =====
+   Estos estilos eliminan los márgenes y paddings que los
+   navegadores agregan por defecto a los elementos. */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* El padding no agranda el elemento */
+}
+
+html {
+  scroll-behavior: smooth; /* Desplazamiento suave al hacer clic en anclas */
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--fondo);
+  color: var(--texto);
+  line-height: 1.6; /* Espacio entre líneas de texto */
+  font-size: 16px;
+}
+
+img {
+  max-width: 100%; /* Las imágenes nunca se salen de su contenedor */
+  display: block;
+}
+
+
+/* ===== TIPOGRAFÍA ===== */
+h1, h2, h3, h4 {
+  font-family: Georgia, 'Times New Roman', serif; /* Fuente más elegante */
+  line-height: 1.3;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.6rem; }
+h3 { font-size: 1.3rem; }
+
+a {
+  color: var(--dorado);
+  text-decoration: none;
+  transition: var(--transicion);
+}
+
+a:hover { color: var(--primario); }
+
+
+/* ===== CONTENEDOR CENTRADO =====
+   Limita el ancho del contenido y lo centra. */
+.contenedor {
+  max-width: 1200px;
+  margin: 0 auto;   /* auto en los lados centra el elemento */
+  padding: 0 1rem;  /* Espacio a los lados para móvil */
+}
+
+
+/* ===== BOTONES ===== */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--borde-radio);
+  cursor: pointer;       /* El cursor cambia a mano al pasar por encima */
+  font-size: 1rem;
+  font-weight: 600;
+  transition: var(--transicion);
+  text-align: center;
+  text-decoration: none;
+  font-family: inherit;  /* Heredar la fuente del body */
+}
+
+.btn-primario {
+  background-color: var(--dorado);
+  color: var(--blanco);
+}
+
+.btn-primario:hover {
+  background-color: var(--primario);
+  color: var(--blanco);
+  transform: translateY(-2px); /* Sube un poco al pasar el mouse */
+  box-shadow: var(--sombra-fuerte);
+}
+
+.btn-secundario {
+  background-color: transparent;
+  color: var(--dorado);
+  border: 2px solid var(--dorado);
+}
+
+.btn-secundario:hover {
+  background-color: var(--dorado);
+  color: var(--blanco);
+}
+
+.btn-peligro {
+  background-color: var(--peligro);
+  color: var(--blanco);
+}
+
+.btn-peligro:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.btn-sm {
+  padding: 0.4rem 1rem; /* Botón más pequeño */
+  font-size: 0.85rem;
+}
+
+/* Botón desactivado: no se puede hacer clic */
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important; /* !important evita que otras reglas lo cambien */
+}
+
+
+/* ===== SECCIONES ===== */
+.seccion {
+  padding: 3rem 0;
+}
+
+.seccion-titulo {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.seccion-titulo h2 { color: var(--primario); }
+.seccion-titulo p  { color: var(--gris); }
+
+/* Línea decorativa debajo del título */
+.divider {
+  width: 60px;
+  height: 3px;
+  background-color: var(--dorado);
+  margin: 0.8rem auto;
+  border-radius: 2px;
+}
+
+
+/* ===== FORMULARIOS ===== */
+.form-grupo {
+  margin-bottom: 1.2rem;
+}
+
+.form-grupo label {
+  display: block;       /* El label ocupa toda la línea */
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  color: var(--primario);
+  font-size: 0.9rem;
+}
+
+/* Estilos para inputs, selects y textareas */
+.form-grupo input,
+.form-grupo select,
+.form-grupo textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1.5px solid #ddd;
+  border-radius: var(--borde-radio);
+  font-size: 1rem;
+  background-color: var(--blanco);
+  color: var(--texto);
+  transition: var(--transicion);
+  font-family: inherit;
+}
+
+/* Cuando el campo está seleccionado (focus) */
+.form-grupo input:focus,
+.form-grupo select:focus,
+.form-grupo textarea:focus {
+  outline: none; /* Quitar el borde azul del navegador */
+  border-color: var(--dorado);
+  box-shadow: 0 0 0 3px rgba(201, 150, 59, 0.2);
+}
+
+.form-grupo textarea {
+  min-height: 110px;
+  resize: vertical; /* Solo se puede redimensionar verticalmente */
+}
+
+
+/* ===== MENSAJES DE ALERTA ===== */
+.alerta {
+  padding: 0.9rem 1rem;
+  border-radius: var(--borde-radio);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.alerta-exito {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.alerta-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.alerta-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+
+/* ===== MODALES (ventanas emergentes) =====
+   El fondo oscuro que cubre toda la pantalla. */
+.modal-fondo {
+  display: none;           /* Oculto por defecto */
+  position: fixed;         /* fixed = siempre visible aunque hagas scroll */
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.65); /* Negro semitransparente */
+  z-index: 1000;           /* Encima de todo lo demás */
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1rem;
+  overflow-y: auto;        /* Scroll si el modal es muy largo */
+}
+
+/* Cuando el JS agrega display:flex para mostrar el modal */
+.modal-fondo[style*="flex"] {
+  display: flex !important;
+}
+
+/* La caja blanca del modal */
+.modal {
+  background-color: var(--blanco);
+  border-radius: var(--borde-radio);
+  max-width: 550px;
+  width: 100%;
+  margin: auto;            /* Centrar verticalmente */
+  box-shadow: var(--sombra-fuerte);
+  /* Animación de entrada */
+  animation: aparecer 0.3s ease;
+}
+
+/* Animación: el modal aparece escalando desde más pequeño */
+@keyframes aparecer {
+  from { opacity: 0; transform: scale(0.9) translateY(-20px); }
+  to   { opacity: 1; transform: scale(1)   translateY(0); }
+}
+
+.modal-cabecera {
+  padding: 1.2rem 1.5rem;
+  background-color: var(--primario);
+  color: var(--blanco);
+  border-radius: var(--borde-radio) var(--borde-radio) 0 0; /* Solo esquinas superiores */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-cabecera h3 { color: var(--blanco); font-size: 1.1rem; }
+
+.btn-cerrar {
+  background: none;
+  border: none;
+  color: var(--blanco);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0 0.4rem;
+  line-height: 1;
+  border-radius: 4px;
+  transition: var(--transicion);
+}
+.btn-cerrar:hover { background-color: rgba(255,255,255,0.2); }
+
+.modal-cuerpo { padding: 1.5rem; }
+
+.modal-pie {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #eee;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+
+/* ===== CARDS (tarjetas) ===== */
+.card {
+  background-color: var(--blanco);
+  border-radius: var(--borde-radio);
+  box-shadow: var(--sombra);
+  overflow: hidden;          /* El contenido no se sale de los bordes */
+  transition: var(--transicion);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sombra-fuerte);
+}
+
+
+/* ===== ETIQUETAS DE SERVICIOS ===== */
+.servicio-tag {
+  display: inline-block;
+  background-color: var(--crema);
+  color: var(--primario);
+  padding: 0.2rem 0.7rem;
+  border-radius: 20px;       /* Muy redondeado = forma de pastilla */
+  font-size: 0.8rem;
+  margin: 0.2rem;
+  border: 1px solid rgba(201, 150, 59, 0.4);
+}
+
+
+/* ===== BADGES (pequeñas etiquetas de estado) ===== */
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.badge-activo    { background-color: #d4edda; color: #155724; }
+.badge-cancelado { background-color: #f8d7da; color: #721c24; }
+
+
+/* ===== GRIDS DE HABITACIONES ===== */
+.grid-habitaciones {
+  display: grid;
+  /* En móvil: una columna */
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+
+/* ===== MENSAJE CUANDO NO HAY RESULTADOS ===== */
+.sin-resultados {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--gris);
+}
+
+.sin-resultados .icono { font-size: 3rem; margin-bottom: 1rem; }
+
+
+/* ===== BARRA DE NAVEGACIÓN ===== */
+.navbar {
+  background-color: rgba(74, 44, 23, 0.97);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  position: sticky; /* Se queda fija arriba al hacer scroll */
+  top: 0;
+  z-index: 500;     /* Encima del contenido pero debajo de los modales */
+}
+
+.navbar-interior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--crema);
+  text-decoration: none;
+  font-family: Georgia, serif;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.navbar-logo:hover      { color: var(--dorado); }
+.navbar-logo span:first-child { font-size: 1.4rem; }
+
+/* Botón de menú para móvil (tres líneas horizontales) */
+.hamburguesa {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.hamburguesa span {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background-color: var(--crema);
+  border-radius: 2px;
+  transition: var(--transicion);
+}
+
+/* Animación de X cuando el menú está abierto */
+.hamburguesa.activo span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburguesa.activo span:nth-child(2) { opacity: 0; }
+.hamburguesa.activo span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* El menú se oculta en móvil por defecto */
+.navbar-menu {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  padding: 0.5rem 0;
+  gap: 0.3rem;
+}
+
+.navbar-menu.activo { display: flex; } /* Se muestra al hacer clic en hamburguesa */
+
+.navbar-link {
+  color: rgba(245, 237, 216, 0.85);
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: var(--transicion);
+}
+
+.navbar-link:hover,
+.navbar-link.activo {
+  color: var(--dorado);
+}
+
+.zona-auth {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  padding-top: 0.5rem;
+}
+
+.navbar-saludo {
+  color: var(--crema);
+  font-size: 0.9rem;
+}
+
+
+/* ===== CARRUSEL ===== */
+.carrusel {
+  position: relative;   /* Para posicionar los botones dentro */
+  width: 100%;
+  overflow: hidden;     /* Ocultar lo que se salga */
+}
+
+/* Cada slide */
+.slide {
+  display: none;        /* Ocultos por defecto */
+  position: relative;
+  animation: aparecer 0.5s ease; /* Aparece con fade cuando se activa */
+}
+
+.slide.activo {
+  display: block;       /* Solo el activo se ve */
+}
+
+.slide img {
+  width: 100%;
+  height: 65vh;         /* 65% de la altura de la pantalla */
+  min-height: 300px;
+  object-fit: cover;    /* La imagen llena el espacio sin distorsionarse */
+}
+
+/* Texto sobre el slide */
+.slide-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+  color: var(--blanco);
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.slide-caption h2 {
+  font-size: 1.5rem;
+  color: var(--blanco);
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+  margin-bottom: 0.4rem;
+}
+
+.slide-caption p {
+  opacity: 0.9;
+  font-size: 1rem;
+}
+
+/* Botones de anterior y siguiente */
+.carrusel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255,255,255,0.7);
+  color: var(--blanco);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;   /* Círculo */
+  cursor: pointer;
+  font-size: 1.1rem;
+  z-index: 10;
+  transition: var(--transicion);
+}
+
+.carrusel-btn:hover { background: rgba(255,255,255,0.35); }
+
+.carrusel-anterior { left: 0.8rem; }
+.carrusel-siguiente { right: 0.8rem; }
+
+/* Puntos indicadores abajo del carrusel */
+.carrusel-puntos {
+  position: absolute;
+  bottom: 0.8rem;
+  left: 50%;
+  transform: translateX(-50%); /* Centrar horizontalmente */
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.punto-slide {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  border: 2px solid rgba(255,255,255,0.8);
+  cursor: pointer;
+  transition: var(--transicion);
+}
+
+.punto-slide.activo {
+  background: var(--blanco);
+  transform: scale(1.3);
+}
+
+
+/* ===== TARJETAS DE HABITACIONES ===== */
+.habitacion-card {
+  display: flex;
+  flex-direction: column; /* Imagen arriba, texto abajo */
+}
+
+.habitacion-imagen-contenedor {
+  height: 220px;
+  overflow: hidden;
+}
+
+.habitacion-imagen-contenedor img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+/* La imagen se amplía levemente al pasar el mouse */
+.habitacion-card:hover .habitacion-imagen-contenedor img {
+  transform: scale(1.05);
+}
+
+.habitacion-info {
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* Ocupa el espacio restante de la tarjeta */
+}
+
+.habitacion-info h3    { color: var(--primario); margin-bottom: 0.5rem; }
+.habitacion-descripcion { color: var(--gris); font-size: 0.9rem; margin-bottom: 0.8rem; flex: 1; }
+
+.habitacion-detalles {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+  color: var(--primario-claro);
+  font-weight: 600;
+}
+
+.habitacion-servicios { margin-bottom: 1rem; }
+
+.habitacion-precio {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.precio-valor {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--dorado);
+  font-family: Georgia, serif;
+}
+
+.precio-texto { font-size: 0.85rem; color: var(--gris); }
+
+
+/* ===== ÁREAS DEL HOTEL ===== */
+.areas-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+}
+
+.area-card {
+  position: relative;
+  border-radius: var(--borde-radio);
+  overflow: hidden;
+  height: 230px;
+}
+
+.area-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.area-card:hover img { transform: scale(1.06); }
+
+.area-card-info {
+  position: absolute;
+  bottom: 0; left: 0; width: 100%;
+  padding: 1.2rem;
+  /* Degradado de negro transparente a negro sólido, de arriba a abajo */
+  background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+  color: var(--blanco);
+}
+
+.area-card-info h3 { font-size: 1.2rem; color: var(--blanco); margin-bottom: 0.2rem; }
+.area-card-info p  { font-size: 0.85rem; opacity: 0.85; }
+
+
+/* ===== GALERÍA DE SERVICIOS ===== */
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+  gap: 0.8rem;
+}
+
+.galeria-item {
+  border-radius: var(--borde-radio);
+  overflow: hidden;
+  position: relative;
+  height: 150px;
+}
+
+.galeria-item.grande {
+  grid-column: span 2; /* Ocupa las 2 columnas */
+  height: 220px;
+}
+
+.galeria-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.galeria-item:hover img { transform: scale(1.06); }
+
+.galeria-label {
+  position: absolute;
+  bottom: 0.5rem; left: 0.5rem;
+  background: rgba(0,0,0,0.6);
+  color: var(--blanco);
+  padding: 0.2rem 0.6rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+
+
+/* ===== ESTADÍSTICAS ===== */
+.estadisticas {
+  background-color: var(--primario);
+  color: var(--blanco);
+  padding: 2.5rem 0;
+}
+
+.estadisticas-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.estadistica-numero {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--dorado);
+  font-family: Georgia, serif;
+}
+
+.estadistica-label { font-size: 0.9rem; opacity: 0.8; margin-top: 0.3rem; }
+
+
+/* ===== SECCIÓN CTA (Llamado a la Acción) ===== */
+.cta {
+  background: linear-gradient(135deg, var(--primario), var(--primario-claro));
+  color: var(--blanco);
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.cta h2 { color: var(--blanco); margin-bottom: 1rem; }
+.cta p  { opacity: 0.9; margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+.hero-botones {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+
+/* ===== FOOTER ===== */
+.footer {
+  background-color: var(--primario);
+  color: var(--crema);
+  padding: 2.5rem 0 1rem;
+  margin-top: 4rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-columna h3 { color: var(--dorado); margin-bottom: 1rem; }
+
+.footer-columna p,
+.footer-columna a {
+  color: rgba(245, 237, 216, 0.8);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  text-decoration: none;
+}
+
+.footer-columna a:hover { color: var(--dorado); }
+
+.footer-copy {
+  text-align: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+}
+
+
+/* ===== PÁGINA DE RESERVAS ===== */
+.reservas-header {
+  background: linear-gradient(135deg, var(--primario), var(--primario-claro));
+  color: var(--blanco);
+  text-align: center;
+  padding: 2.5rem 1rem;
+}
+
+.reservas-header h1 { color: var(--blanco); margin-bottom: 0.5rem; }
+.reservas-header p  { opacity: 0.85; }
+
+.busqueda-panel {
+  background-color: var(--blanco);
+  border-radius: var(--borde-radio);
+  box-shadow: var(--sombra);
+  padding: 1.5rem;
+  margin: -1.5rem 0 2rem; /* Margen negativo para solapar con el header */
+  position: relative;
+  z-index: 10;
+}
+
+.busqueda-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.resultados-info { color: var(--gris); margin-bottom: 1rem; font-size: 0.95rem; }
+
+/* Mis Reservas */
+.mis-reservas-seccion {
+  background-color: var(--crema);
+  border-radius: var(--borde-radio);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.mis-reservas-seccion h3 { color: var(--primario); margin-bottom: 1rem; }
+
+.reserva-item {
+  background-color: var(--blanco);
+  border-radius: var(--borde-radio);
+  padding: 1rem 1.2rem;
+  margin-bottom: 0.8rem;
+  box-shadow: var(--sombra);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-left: 4px solid #ccc; /* Borde de color a la izquierda */
+}
+
+.reserva-item.activa    { border-left-color: var(--exito); }
+.reserva-item.cancelada { border-left-color: var(--peligro); opacity: 0.7; }
+
+.reserva-info h4 { color: var(--primario); margin-bottom: 0.2rem; }
+.reserva-info p  { font-size: 0.85rem; color: var(--gris); margin-bottom: 0.1rem; }
+
+/* Grid de detalles dentro del modal de habitación */
+.detalle-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+
+.detalle-item {
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  background-color: var(--crema);
+  border-radius: 6px;
+}
+
+/* Resumen del precio */
+.precio-resumen {
+  background: var(--crema);
+  padding: 1rem 1.2rem;
+  border-radius: var(--borde-radio);
+  margin-top: 1rem;
+}
+
+.precio-linea {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+  font-size: 0.95rem;
+}
+
+.precio-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--primario);
+  border-top: 1px solid var(--dorado);
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+
+/* ===== PÁGINA DE CONTACTO ===== */
+.contacto-header {
+  background: linear-gradient(135deg, var(--primario), var(--primario-claro));
+  color: var(--blanco);
+  text-align: center;
+  padding: 2.5rem 1rem;
+}
+
+.contacto-header h1 { color: var(--blanco); }
+
+.contacto-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.contacto-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.contacto-icono { font-size: 1.5rem; min-width: 40px; }
+
+.contacto-info-item h4 { color: var(--primario); margin-bottom: 0.2rem; }
+
+.mapa-contenedor {
+  border-radius: var(--borde-radio);
+  overflow: hidden;
+  box-shadow: var(--sombra);
+  height: 300px;
+  background: linear-gradient(135deg, var(--crema), #e8d5b7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.contacto-card {
+  background-color: var(--blanco);
+  border-radius: var(--borde-radio);
+  padding: 1.5rem;
+  box-shadow: var(--sombra);
+}
+
+
+/* ===== PANEL DE ADMINISTRACIÓN ===== */
+.admin-header {
+  background-color: var(--primario);
+  padding: 1rem 0;
+  color: var(--blanco);
+}
+
+.admin-header-interior {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.admin-logo {
+  color: var(--crema);
+  font-family: Georgia, serif;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Tabs del panel admin */
+.admin-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.admin-tab {
+  padding: 0.6rem 1.2rem;
+  background: transparent;
+  border: 2px solid var(--primario);
+  color: var(--primario);
+  border-radius: var(--borde-radio);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: var(--transicion);
+  font-family: inherit;
+}
+
+.admin-tab:hover,
+.admin-tab.activo {
+  background-color: var(--primario);
+  color: var(--blanco);
+}
+
+/* Los paneles del admin se ocultan y se muestran con JS */
+.admin-panel { display: none; }
+.admin-panel.activo { display: block; }
+
+.admin-accion-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Tabla responsiva: scroll horizontal en pantallas pequeñas */
+.tabla-responsiva {
+  overflow-x: auto;
+  border-radius: var(--borde-radio);
+  box-shadow: var(--sombra);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; /* Eliminar espacio entre celdas */
+  background-color: var(--blanco);
+  min-width: 550px; /* Ancho mínimo para que no se comprima */
+}
+
+thead { background-color: var(--primario); color: var(--blanco); }
+
+th, td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+}
+
+th { font-weight: 600; }
+
+tr:last-child td { border-bottom: none; }
+tr:hover td      { background-color: var(--crema); }
+
+
+/* ================================================
+   MEDIA QUERIES — Responsive Design
+   Estilos que se aplican solo cuando la pantalla
+   tiene cierto ancho mínimo.
+   ================================================ */
+
+/* ===== TABLET (600px o más) ===== */
+@media (min-width: 600px) {
+  h1 { font-size: 2.5rem; }
+
+  /* De 1 columna a 2 columnas */
+  .grid-habitaciones  { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid        { grid-template-columns: repeat(2, 1fr); }
+  .busqueda-grid      { grid-template-columns: repeat(2, 1fr); }
+  .areas-grid         { grid-template-columns: repeat(2, 1fr); }
+  .estadisticas-grid  { grid-template-columns: repeat(4, 1fr); }
+
+  .galeria-item       { height: 200px; }
+  .galeria-item.grande { height: 280px; }
+
+  .slide img { height: 75vh; }
+  .slide-caption h2 { font-size: 2.2rem; }
+}
+
+/* ===== ESCRITORIO (1024px o más) ===== */
+@media (min-width: 1024px) {
+  h1 { font-size: 3rem; }
+  .seccion { padding: 5rem 0; }
+
+  /* De 2 columnas a 3 columnas */
+  .grid-habitaciones { grid-template-columns: repeat(3, 1fr); }
+  .footer-grid       { grid-template-columns: repeat(3, 1fr); }
+  .areas-grid        { grid-template-columns: repeat(3, 1fr); }
+
+  /* Formulario de búsqueda en 4 columnas */
+  .busqueda-grid { grid-template-columns: repeat(4, 1fr); align-items: end; }
+
+  .contacto-grid { grid-template-columns: 1fr 1fr; }
+  .mapa-contenedor { height: 400px; }
+
+  /* Galería en 3 columnas: todas iguales */
+  .galeria-grid { grid-template-columns: repeat(3, 1fr); }
+  .galeria-item.grande { grid-column: span 1; height: 320px; }
+  .galeria-item        { height: 320px; }
+
+  /* En escritorio: mostrar el menú en horizontal */
+  .hamburguesa { display: none; }
+
+  .navbar-menu {
+    display: flex !important; /* Siempre visible en escritorio */
+    flex-direction: row;
+    width: auto;
+    padding: 0;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .zona-auth { padding-top: 0; margin-left: auto; }
+}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Admin — Hotel El Rincón del Carmen</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- ===== ENCABEZADO DEL ADMIN (diferente al navbar normal) ===== -->
+  <header class="admin-header">
+    <div class="contenedor admin-header-interior">
+      <div class="admin-logo">
+        <span>🏨</span>
+        <span>Panel de Administración</span>
+      </div>
+      <div style="display:flex; gap:0.8rem; align-items:center; flex-wrap:wrap">
+        <a href="index.html" class="btn btn-sm"
+           style="border:2px solid var(--crema); color:var(--crema); border-radius:8px">
+          Ver Sitio Web
+        </a>
+        <!-- onclick llama directamente a la función cerrarSesion() de auth.js -->
+        <button class="btn btn-primario btn-sm" onclick="cerrarSesion()">
+          Cerrar Sesión
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <main class="contenedor" style="padding-top: 2rem; padding-bottom: 4rem">
+
+    <!-- Tabs de navegación entre secciones -->
+    <div class="admin-tabs">
+      <!-- data-panel indica qué panel debe abrir esta tab -->
+      <button class="admin-tab activo" data-panel="habitaciones">🛏️ Habitaciones</button>
+      <button class="admin-tab"        data-panel="reservas">📋 Reservas</button>
+    </div>
+
+    <!-- ===== PANEL: GESTIÓN DE HABITACIONES ===== -->
+    <div class="admin-panel activo" id="panel-habitaciones">
+
+      <div class="admin-accion-bar">
+        <h2 style="color:var(--primario)">Habitaciones del Hotel</h2>
+        <button class="btn btn-primario" id="btn-nueva-habitacion">
+          + Nueva Habitación
+        </button>
+      </div>
+
+      <!-- La tabla se llena con JavaScript en admin.js -->
+      <div class="tabla-responsiva">
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Camas</th>
+              <th>Capacidad</th>
+              <th>Precio / Noche</th>
+              <th>Servicios</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-habitaciones">
+            <tr>
+              <td colspan="6" style="text-align:center; color:var(--gris)">Cargando...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- ===== PANEL: GESTIÓN DE RESERVAS ===== -->
+    <div class="admin-panel" id="panel-reservas">
+
+      <div class="admin-accion-bar">
+        <h2 style="color:var(--primario)">Todas las Reservas</h2>
+      </div>
+
+      <div class="tabla-responsiva">
+        <table>
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Cliente</th>
+              <th>Habitación</th>
+              <th>Entrada</th>
+              <th>Salida</th>
+              <th>Total</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-reservas">
+            <tr>
+              <td colspan="7" style="text-align:center; color:var(--gris)">Cargando...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- ===== MODAL: FORMULARIO DE HABITACIÓN ===== -->
+  <div class="modal-fondo" id="modal-habitacion" style="display:none">
+    <div class="modal" style="max-width:620px">
+
+      <div class="modal-cabecera">
+        <!-- El título cambia entre "Nueva Habitación" y "Editar Habitación" -->
+        <h3 id="modal-hab-titulo">Nueva Habitación</h3>
+        <button class="btn-cerrar"
+          onclick="controlarModal('modal-habitacion', 'cerrar')">&times;</button>
+      </div>
+
+      <div class="modal-cuerpo">
+        <!-- Mensaje de éxito o error al guardar -->
+        <div id="msg-form-hab"></div>
+
+        <form id="form-habitacion">
+
+          <div class="form-grupo">
+            <label for="hab-nombre">Nombre de la Habitación</label>
+            <input type="text" id="hab-nombre" required placeholder="Ej: Suite Presidencial">
+          </div>
+
+          <div class="form-grupo">
+            <label for="hab-descripcion">Descripción</label>
+            <textarea id="hab-descripcion" required
+              placeholder="Breve descripción de la habitación..."></textarea>
+          </div>
+
+          <!-- Dos campos en la misma fila -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem">
+            <div class="form-grupo">
+              <label for="hab-camas">Número de Camas</label>
+              <input type="number" id="hab-camas" required min="1" max="10" value="1">
+            </div>
+            <div class="form-grupo">
+              <label for="hab-personas">Capacidad Máxima</label>
+              <input type="number" id="hab-personas" required min="1" max="10" value="2">
+            </div>
+          </div>
+
+          <div class="form-grupo">
+            <label for="hab-precio">Precio por Noche ($ COP)</label>
+            <input type="number" id="hab-precio" required min="1" placeholder="Ej: 250000">
+          </div>
+
+          <!-- Checkboxes de servicios -->
+          <div class="form-grupo">
+            <label>Servicios Incluidos</label>
+            <div style="display:flex; flex-wrap:wrap; gap:1rem; margin-top:0.5rem">
+              <!-- Cada checkbox tiene un value con el nombre del servicio -->
+              <label style="display:flex; align-items:center; gap:0.4rem;
+                            cursor:pointer; font-weight:normal">
+                <input type="checkbox" class="check-servicio" value="WiFi"> 📶 WiFi
+              </label>
+              <label style="display:flex; align-items:center; gap:0.4rem;
+                            cursor:pointer; font-weight:normal">
+                <input type="checkbox" class="check-servicio" value="TV"> 📺 TV
+              </label>
+              <label style="display:flex; align-items:center; gap:0.4rem;
+                            cursor:pointer; font-weight:normal">
+                <input type="checkbox" class="check-servicio" value="Aire Acondicionado"> ❄️ Aire Acond.
+              </label>
+              <label style="display:flex; align-items:center; gap:0.4rem;
+                            cursor:pointer; font-weight:normal">
+                <input type="checkbox" class="check-servicio" value="Minibar"> 🍾 Minibar
+              </label>
+              <label style="display:flex; align-items:center; gap:0.4rem;
+                            cursor:pointer; font-weight:normal">
+                <input type="checkbox" class="check-servicio" value="Jacuzzi"> 🛁 Jacuzzi
+              </label>
+              <label style="display:flex; align-items:center; gap:0.4rem;
+                            cursor:pointer; font-weight:normal">
+                <input type="checkbox" class="check-servicio" value="Sala de Estar"> 🛋️ Sala
+              </label>
+              <label style="display:flex; align-items:center; gap:0.4rem;
+                            cursor:pointer; font-weight:normal">
+                <input type="checkbox" class="check-servicio" value="Terraza"> 🌿 Terraza
+              </label>
+            </div>
+          </div>
+
+          <div class="form-grupo">
+            <label for="hab-imagen">URL de la Imagen (opcional)</label>
+            <input type="url" id="hab-imagen" placeholder="https://ejemplo.com/imagen.jpg">
+            <small style="color:var(--gris)">Si no pones imagen se usará una por defecto.</small>
+          </div>
+
+          <div style="display:flex; gap:1rem; justify-content:flex-end; margin-top:1rem">
+            <button type="button" class="btn btn-secundario"
+              onclick="controlarModal('modal-habitacion', 'cerrar')">Cancelar</button>
+            <button type="submit" class="btn btn-primario">Guardar Habitación</button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+
+  <script src="js/datos.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/admin.js"></script>
+
+</body>
+</html>

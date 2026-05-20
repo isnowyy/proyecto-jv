@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservas — Hotel El Rincón del Carmen</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- BARRA DE NAVEGACIÓN -->
+  <nav class="navbar">
+    <div class="contenedor navbar-interior">
+      <a href="index.html" class="navbar-logo">
+        <span>🏨</span>
+        <span>El Rincón del Carmen</span>
+      </a>
+      <button class="hamburguesa" id="hamburguesa" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="navbar-menu" id="navbar-menu">
+        <a href="index.html"    class="navbar-link">Inicio</a>
+        <a href="reservas.html" class="navbar-link activo">Reservas</a>
+        <a href="contacto.html" class="navbar-link">Contacto</a>
+        <div class="zona-auth" id="zona-auth"></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== ENCABEZADO DE LA PÁGINA ===== -->
+  <div class="reservas-header">
+    <div class="contenedor">
+      <h1>🛏️ Consulta de Disponibilidad</h1>
+      <p>Ingresa tus fechas para ver las habitaciones disponibles</p>
+    </div>
+  </div>
+
+  <div class="contenedor">
+
+    <!-- ===== FORMULARIO DE BÚSQUEDA ===== -->
+    <div class="busqueda-panel">
+      <!-- onsubmit llama a la función buscarHabitaciones() cuando el usuario hace clic en Buscar -->
+      <form onsubmit="buscarHabitaciones(); return false;">
+        <div class="busqueda-grid">
+
+          <div class="form-grupo">
+            <label for="checkIn">📅 Fecha de entrada</label>
+            <input type="date" id="checkIn" required>
+          </div>
+
+          <div class="form-grupo">
+            <label for="checkOut">📅 Fecha de salida</label>
+            <input type="date" id="checkOut" required>
+          </div>
+
+          <div class="form-grupo">
+            <label for="personas">👥 Personas</label>
+            <select id="personas">
+              <option value="1">1 persona</option>
+              <option value="2">2 personas</option>
+              <option value="3">3 personas</option>
+              <option value="4">4 personas</option>
+              <option value="5">5 personas</option>
+              <option value="6">6 personas</option>
+            </select>
+          </div>
+
+          <div class="form-grupo" style="display:flex; align-items:flex-end">
+            <button type="submit" class="btn btn-primario" style="width:100%">
+              🔍 Buscar
+            </button>
+          </div>
+
+        </div>
+      </form>
+      <!-- Aquí aparece el mensaje si las fechas son inválidas -->
+      <div id="alerta-busqueda"></div>
+    </div>
+
+    <!-- ===== RESULTADOS DE BÚSQUEDA =====
+         Este div se llena con JavaScript cuando el usuario busca -->
+    <section style="margin-bottom: 2rem">
+      <div id="resultados">
+        <!-- Mensaje inicial antes de buscar -->
+        <div class="sin-resultados">
+          <div class="icono">🏨</div>
+          <h3>Selecciona las fechas para buscar</h3>
+          <p>Ingresa la fecha de llegada, salida y número de personas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MIS RESERVAS =====
+         Solo se muestra si el usuario tiene sesión iniciada.
+         JavaScript controla si se ve o no. -->
+    <section class="mis-reservas-seccion" id="mis-reservas" style="display:none">
+      <h3>📋 Mis Reservas</h3>
+      <!-- Este div se llena con JavaScript -->
+      <div id="lista-mis-reservas"></div>
+    </section>
+
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="contenedor">
+      <div class="footer-grid">
+        <div class="footer-columna">
+          <h3>🏨 El Rincón del Carmen</h3>
+          <p>Reservas fáciles y seguras.</p>
+        </div>
+        <div class="footer-columna">
+          <h3>Navegación</h3>
+          <a href="index.html">Inicio</a>
+          <a href="reservas.html">Reservas</a>
+          <a href="contacto.html">Contacto</a>
+        </div>
+        <div class="footer-columna">
+          <h3>Soporte</h3>
+          <p>📞 (604) 555 1234</p>
+          <p>✉️ reservas@rincondelcarmen.com</p>
+        </div>
+      </div>
+      <p class="footer-copy">© 2025 Hotel El Rincón del Carmen.</p>
+    </div>
+  </footer>
+
+
+  <!-- ===== MODAL: DETALLE Y RESERVA DE HABITACIÓN ===== -->
+  <div class="modal-fondo" id="modal-detalle" style="display:none">
+    <div class="modal" style="max-width:650px">
+
+      <div class="modal-cabecera">
+        <!-- El título se cambia con JavaScript según la habitación seleccionada -->
+        <h3 id="modal-detalle-titulo">Detalle de Habitación</h3>
+        <button class="btn-cerrar"
+          onclick="controlarModal('modal-detalle', 'cerrar')">&times;</button>
+      </div>
+
+      <!-- El cuerpo del modal se llena completamente con JavaScript -->
+      <div class="modal-cuerpo" id="modal-detalle-cuerpo"></div>
+
+      <div class="modal-pie">
+        <button class="btn btn-secundario"
+          onclick="controlarModal('modal-detalle', 'cerrar')">Cerrar</button>
+        <!-- Al hacer clic en este botón se llama confirmarReserva() -->
+        <button class="btn btn-primario" id="btn-confirmar-reserva"
+          onclick="confirmarReserva()">Confirmar Reserva</button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ===== MODAL: INICIAR SESIÓN ===== -->
+  <div class="modal-fondo" id="modal-login" style="display:none">
+    <div class="modal">
+      <div class="modal-cabecera">
+        <h3>🔐 Iniciar Sesión</h3>
+        <button class="btn-cerrar" onclick="cerrarLogin()">&times;</button>
+      </div>
+      <div class="modal-cuerpo">
+        <div id="msg-login"></div>
+        <form id="form-login">
+          <div class="form-grupo">
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email" required placeholder="correo@ejemplo.com">
+          </div>
+          <div class="form-grupo">
+            <label for="login-contrasena">Contraseña</label>
+            <input type="password" id="login-contrasena" required placeholder="Tu contraseña">
+          </div>
+          <button type="submit" class="btn btn-primario" style="width:100%">Iniciar Sesión</button>
+        </form>
+        <p style="text-align:center; margin-top:1rem; color:var(--gris)">
+          ¿No tienes cuenta? <a href="#" onclick="abrirRegistro()">Regístrate aquí</a>
+        </p>
+        <div style="margin-top:1rem; padding:0.8rem; background:var(--crema);
+                    border-radius:8px; font-size:0.85rem; color:var(--gris)">
+          <strong>Prueba con:</strong><br>
+          Admin: admin@hotel.com / admin123<br>
+          Cliente: juan@test.com / test123
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ===== MODAL: REGISTRO ===== -->
+  <div class="modal-fondo" id="modal-registro" style="display:none">
+    <div class="modal">
+      <div class="modal-cabecera">
+        <h3>📝 Crear Cuenta</h3>
+        <button class="btn-cerrar" onclick="cerrarRegistro()">&times;</button>
+      </div>
+      <div class="modal-cuerpo">
+        <div id="msg-registro"></div>
+        <form id="form-registro">
+          <div class="form-grupo">
+            <label for="reg-id">Número de Identificación</label>
+            <input type="text" id="reg-id" required placeholder="CC, CE, Pasaporte...">
+          </div>
+          <div class="form-grupo">
+            <label for="reg-nombre">Nombre Completo</label>
+            <input type="text" id="reg-nombre" required placeholder="Tu nombre completo">
+          </div>
+          <div class="form-grupo">
+            <label for="reg-nacionalidad">Nacionalidad</label>
+            <input type="text" id="reg-nacionalidad" required placeholder="Ej: Colombiana">
+          </div>
+          <div class="form-grupo">
+            <label for="reg-email">Email</label>
+            <input type="email" id="reg-email" required placeholder="correo@ejemplo.com">
+          </div>
+          <div class="form-grupo">
+            <label for="reg-telefono">Teléfono</label>
+            <input type="tel" id="reg-telefono" required placeholder="Ej: 3001234567">
+          </div>
+          <div class="form-grupo">
+            <label for="reg-contrasena">Contraseña (mínimo 6 caracteres)</label>
+            <input type="password" id="reg-contrasena" required minlength="6">
+          </div>
+          <button type="submit" class="btn btn-primario" style="width:100%">Crear Cuenta</button>
+        </form>
+        <p style="text-align:center; margin-top:1rem; color:var(--gris)">
+          ¿Ya tienes cuenta? <a href="#" onclick="abrirLogin()">Inicia sesión aquí</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Scripts -->
+  <script src="js/datos.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/reservas.js"></script>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('hamburguesa').classList.toggle('activo');
+      document.getElementById('navbar-menu').classList.toggle('activo');
+    }
+  </script>
+
+</body>
+</html>
