@@ -647,94 +647,12 @@ a:hover { color: var(--primario); }
   position: absolute;
   bottom: 0; left: 0; width: 100%;
   padding: 1.2rem;
-  /* Degradado de negro transparente a negro sólido, de arriba a abajo */
   background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
   color: var(--blanco);
 }
 
 .area-card-info h3 { font-size: 1.2rem; color: var(--blanco); margin-bottom: 0.2rem; }
 .area-card-info p  { font-size: 0.85rem; opacity: 0.85; }
-
-
-/* ===== GALERÍA DE SERVICIOS ===== */
-.galeria-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columnas */
-  gap: 0.8rem;
-}
-
-.galeria-item {
-  border-radius: var(--borde-radio);
-  overflow: hidden;
-  position: relative;
-  height: 150px;
-}
-
-.galeria-item.grande {
-  grid-column: span 2; /* Ocupa las 2 columnas */
-  height: 220px;
-}
-
-.galeria-item img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-
-.galeria-item:hover img { transform: scale(1.06); }
-
-.galeria-label {
-  position: absolute;
-  bottom: 0.5rem; left: 0.5rem;
-  background: rgba(0,0,0,0.6);
-  color: var(--blanco);
-  padding: 0.2rem 0.6rem;
-  border-radius: 5px;
-  font-size: 0.8rem;
-}
-
-
-/* ===== ESTADÍSTICAS ===== */
-.estadisticas {
-  background-color: var(--primario);
-  color: var(--blanco);
-  padding: 2.5rem 0;
-}
-
-.estadisticas-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  text-align: center;
-}
-
-.estadistica-numero {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: var(--dorado);
-  font-family: Georgia, serif;
-}
-
-.estadistica-label { font-size: 0.9rem; opacity: 0.8; margin-top: 0.3rem; }
-
-
-/* ===== SECCIÓN CTA (Llamado a la Acción) ===== */
-.cta {
-  background: linear-gradient(135deg, var(--primario), var(--primario-claro));
-  color: var(--blanco);
-  text-align: center;
-  padding: 3rem 1rem;
-}
-
-.cta h2 { color: var(--blanco); margin-bottom: 1rem; }
-.cta p  { opacity: 0.9; margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
-
-.hero-botones {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
 
 
 /* ===== FOOTER ===== */
@@ -1027,15 +945,10 @@ tr:hover td      { background-color: var(--crema); }
 @media (min-width: 600px) {
   h1 { font-size: 2.5rem; }
 
-  /* De 1 columna a 2 columnas */
-  .grid-habitaciones  { grid-template-columns: repeat(2, 1fr); }
-  .footer-grid        { grid-template-columns: repeat(2, 1fr); }
-  .busqueda-grid      { grid-template-columns: repeat(2, 1fr); }
-  .areas-grid         { grid-template-columns: repeat(2, 1fr); }
-  .estadisticas-grid  { grid-template-columns: repeat(4, 1fr); }
-
-  .galeria-item       { height: 200px; }
-  .galeria-item.grande { height: 280px; }
+  .grid-habitaciones { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid       { grid-template-columns: repeat(2, 1fr); }
+  .busqueda-grid     { grid-template-columns: repeat(2, 1fr); }
+  .areas-grid        { grid-template-columns: repeat(2, 1fr); }
 
   .slide img { height: 75vh; }
   .slide-caption h2 { font-size: 2.2rem; }
@@ -1046,27 +959,20 @@ tr:hover td      { background-color: var(--crema); }
   h1 { font-size: 3rem; }
   .seccion { padding: 5rem 0; }
 
-  /* De 2 columnas a 3 columnas */
   .grid-habitaciones { grid-template-columns: repeat(3, 1fr); }
   .footer-grid       { grid-template-columns: repeat(3, 1fr); }
-  .areas-grid        { grid-template-columns: repeat(3, 1fr); }
 
   /* Formulario de búsqueda en 4 columnas */
   .busqueda-grid { grid-template-columns: repeat(4, 1fr); align-items: end; }
 
-  .contacto-grid { grid-template-columns: 1fr 1fr; }
+  .contacto-grid   { grid-template-columns: 1fr 1fr; }
   .mapa-contenedor { height: 400px; }
 
-  /* Galería en 3 columnas: todas iguales */
-  .galeria-grid { grid-template-columns: repeat(3, 1fr); }
-  .galeria-item.grande { grid-column: span 1; height: 320px; }
-  .galeria-item        { height: 320px; }
-
-  /* En escritorio: mostrar el menú en horizontal */
+  /* En escritorio: menú horizontal */
   .hamburguesa { display: none; }
 
   .navbar-menu {
-    display: flex !important; /* Siempre visible en escritorio */
+    display: flex !important;
     flex-direction: row;
     width: auto;
     padding: 0;

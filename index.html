@@ -2,64 +2,39 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <!-- Esta meta hace que el sitio se vea bien en móviles -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hotel El Rincón del Carmen</title>
   <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
 
-  <!-- ===================================================
-       BARRA DE NAVEGACIÓN
-       Se repite en cada página del sitio.
-       La zona-auth se llena con JavaScript según si hay sesión.
-       =================================================== -->
+  <!-- BARRA DE NAVEGACIÓN -->
   <nav class="navbar">
     <div class="contenedor navbar-interior">
-
       <a href="index.html" class="navbar-logo">
         <span>🏨</span>
         <span>El Rincón del Carmen</span>
       </a>
-
-      <!-- Botón de tres líneas para móvil -->
       <button class="hamburguesa" id="hamburguesa" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </button>
-
       <div class="navbar-menu" id="navbar-menu">
         <a href="index.html"    class="navbar-link activo">Inicio</a>
         <a href="reservas.html" class="navbar-link">Reservas</a>
         <a href="contacto.html" class="navbar-link">Contacto</a>
-        <!-- Esta zona se llena con JS: muestra login/registro o nombre del usuario -->
         <div class="zona-auth" id="zona-auth"></div>
       </div>
-
     </div>
   </nav>
 
-  <!-- ===================================================
-       CARRUSEL DE IMÁGENES
-       Los slides están escritos directamente en el HTML.
-       JavaScript solo controla cuál se muestra.
-       =================================================== -->
+  <!-- CARRUSEL -->
   <section class="carrusel">
 
     <div class="slide activo">
-      <img src="https://picsum.photos/seed/hotel-c1-rc/1400/700" alt="Bienvenida">
+      <img src="https://picsum.photos/seed/hotel-c1-rc/1400/700" alt="Hotel">
       <div class="slide-caption">
         <h2>Bienvenido a El Rincón del Carmen</h2>
-        <p>Un refugio de paz, elegancia y confort en la naturaleza</p>
-      </div>
-    </div>
-
-    <div class="slide">
-      <img src="https://picsum.photos/seed/hotel-c2-rc/1400/700" alt="Piscina" loading="lazy">
-      <div class="slide-caption">
-        <h2>Piscina y Zona Húmeda</h2>
-        <p>Disfruta de nuestras instalaciones acuáticas en un ambiente único</p>
+        <p>Paz, elegancia y confort en la naturaleza</p>
       </div>
     </div>
 
@@ -67,76 +42,36 @@
       <img src="https://picsum.photos/seed/hotel-c3-rc/1400/700" alt="Habitaciones" loading="lazy">
       <div class="slide-caption">
         <h2>Habitaciones de Lujo</h2>
-        <p>Cada habitación pensada para tu máximo confort</p>
+        <p>Cada habitación pensada para tu comodidad</p>
       </div>
     </div>
 
     <div class="slide">
       <img src="https://picsum.photos/seed/hotel-c4-rc/1400/700" alt="Spa" loading="lazy">
       <div class="slide-caption">
-        <h2>Spa y Bienestar</h2>
-        <p>Renueva cuerpo y mente con nuestros tratamientos exclusivos</p>
+        <h2>Spa y Piscina</h2>
+        <p>Relajación completa para cuerpo y mente</p>
       </div>
     </div>
 
-    <div class="slide">
-      <img src="https://picsum.photos/seed/hotel-c5-rc/1400/700" alt="Restaurante" loading="lazy">
-      <div class="slide-caption">
-        <h2>Gastronomía Exquisita</h2>
-        <p>Los mejores sabores de la cocina regional e internacional</p>
-      </div>
-    </div>
-
-    <!-- Botones de navegación del carrusel -->
     <button class="carrusel-btn carrusel-anterior" onclick="anteriorSlide()">&#10094;</button>
     <button class="carrusel-btn carrusel-siguiente" onclick="siguienteSlide()">&#10095;</button>
 
-    <!-- Puntos indicadores -->
     <div class="carrusel-puntos">
       <span class="punto-slide activo" onclick="irASlide(0)"></span>
       <span class="punto-slide"       onclick="irASlide(1)"></span>
       <span class="punto-slide"       onclick="irASlide(2)"></span>
-      <span class="punto-slide"       onclick="irASlide(3)"></span>
-      <span class="punto-slide"       onclick="irASlide(4)"></span>
     </div>
 
   </section>
 
-  <!-- ===================================================
-       ESTADÍSTICAS DEL HOTEL
-       =================================================== -->
-  <section class="estadisticas">
-    <div class="contenedor">
-      <div class="estadisticas-grid">
-        <div>
-          <div class="estadistica-numero">6</div>
-          <div class="estadistica-label">Tipos de Habitación</div>
-        </div>
-        <div>
-          <div class="estadistica-numero">15+</div>
-          <div class="estadistica-label">Años de Experiencia</div>
-        </div>
-        <div>
-          <div class="estadistica-numero">5★</div>
-          <div class="estadistica-label">Calificación</div>
-        </div>
-        <div>
-          <div class="estadistica-numero">500+</div>
-          <div class="estadistica-label">Huéspedes Felices</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================================================
-       ÁREAS DEL HOTEL
-       =================================================== -->
+  <!-- ÁREAS DEL HOTEL -->
   <section class="seccion">
     <div class="contenedor">
       <div class="seccion-titulo">
         <h2>Nuestras Instalaciones</h2>
         <div class="divider"></div>
-        <p>Espacios diseñados para tu bienestar y descanso</p>
+        <p>Espacios diseñados para tu bienestar</p>
       </div>
 
       <div class="areas-grid">
@@ -152,8 +87,8 @@
         <div class="area-card">
           <img src="https://picsum.photos/seed/area-spa-rc/600/400" alt="Spa" loading="lazy">
           <div class="area-card-info">
-            <h3>🧖 Spa & Wellness</h3>
-            <p>Relajación y rejuvenecimiento total</p>
+            <h3>🧖 Spa</h3>
+            <p>Masajes y tratamientos de relajación</p>
           </div>
         </div>
 
@@ -161,31 +96,15 @@
           <img src="https://picsum.photos/seed/area-rest-rc/600/400" alt="Restaurante" loading="lazy">
           <div class="area-card-info">
             <h3>🍽️ Restaurante</h3>
-            <p>Gastronomía regional e internacional</p>
+            <p>Cocina regional e internacional</p>
           </div>
         </div>
 
         <div class="area-card">
-          <img src="https://picsum.photos/seed/area-jard-rc/600/400" alt="Jardines" loading="lazy">
-          <div class="area-card-info">
-            <h3>🌿 Jardines</h3>
-            <p>Amplios jardines tropicales para caminar</p>
-          </div>
-        </div>
-
-        <div class="area-card">
-          <img src="https://picsum.photos/seed/area-even-rc/600/400" alt="Salón" loading="lazy">
+          <img src="https://picsum.photos/seed/area-even-rc/600/400" alt="Eventos" loading="lazy">
           <div class="area-card-info">
             <h3>🎉 Salón de Eventos</h3>
-            <p>Para bodas, reuniones y celebraciones</p>
-          </div>
-        </div>
-
-        <div class="area-card">
-          <img src="https://picsum.photos/seed/area-hume-rc/600/400" alt="Zona Húmeda" loading="lazy">
-          <div class="area-card-info">
-            <h3>💦 Zona Húmeda</h3>
-            <p>Sauna, turco y jacuzzi gemelar</p>
+            <p>Para bodas y celebraciones especiales</p>
           </div>
         </div>
 
@@ -193,66 +112,13 @@
     </div>
   </section>
 
-  <!-- ===================================================
-       GALERÍA DE SERVICIOS
-       =================================================== -->
-  <section class="seccion" style="background-color: var(--crema)">
-    <div class="contenedor">
-      <div class="seccion-titulo">
-        <h2>Una Experiencia Completa</h2>
-        <div class="divider"></div>
-        <p>Cada detalle pensado para una estadía inolvidable</p>
-      </div>
-
-      <div class="galeria-grid">
-        <div class="galeria-item grande">
-          <img src="https://picsum.photos/seed/gal-comida-rc/800/600" alt="Gastronomía" loading="lazy">
-          <span class="galeria-label">🍱 Cocina Regional</span>
-        </div>
-        <div class="galeria-item">
-          <img src="https://picsum.photos/seed/gal-spa-rc/600/400" alt="Spa" loading="lazy">
-          <span class="galeria-label">🕯️ Aromaterapia</span>
-        </div>
-        <div class="galeria-item">
-          <img src="https://picsum.photos/seed/gal-pool-rc/600/400" alt="Piscina" loading="lazy">
-          <span class="galeria-label">🌊 Zona Acuática</span>
-        </div>
-        <div class="galeria-item">
-          <img src="https://picsum.photos/seed/gal-desay-rc/600/400" alt="Desayuno" loading="lazy">
-          <span class="galeria-label">☕ Desayuno</span>
-        </div>
-        <div class="galeria-item">
-          <img src="https://picsum.photos/seed/gal-room-rc/600/400" alt="Habitación" loading="lazy">
-          <span class="galeria-label">🛏️ Confort Premium</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================================================
-       LLAMADO A LA ACCIÓN (CTA)
-       =================================================== -->
-  <section class="cta">
-    <div class="contenedor">
-      <h2>¿Listo para vivir la experiencia?</h2>
-      <p>Consulta disponibilidad y reserva tu habitación hoy mismo</p>
-      <div class="hero-botones">
-        <a href="reservas.html" class="btn btn-primario">Reservar Ahora</a>
-        <a href="contacto.html" class="btn btn-secundario"
-           style="border-color:white; color:white">Contáctanos</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================================================
-       FOOTER
-       =================================================== -->
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="contenedor">
       <div class="footer-grid">
         <div class="footer-columna">
           <h3>🏨 El Rincón del Carmen</h3>
-          <p>Naturaleza y confort unidos para crear momentos únicos.</p>
+          <p>Naturaleza y confort para momentos únicos.</p>
         </div>
         <div class="footer-columna">
           <h3>Navegación</h3>
@@ -267,29 +133,19 @@
           <p>✉️ info@rincondelcarmen.com</p>
         </div>
       </div>
-      <p class="footer-copy">© 2025 Hotel El Rincón del Carmen. Todos los derechos reservados.</p>
+      <p class="footer-copy">© 2025 Hotel El Rincón del Carmen.</p>
     </div>
   </footer>
 
-
-  <!-- ===================================================
-       MODAL: INICIAR SESIÓN
-       Las ventanas emergentes están ocultas por defecto
-       (display:none). JavaScript las muestra cuando el
-       usuario hace clic en los botones del navbar.
-       =================================================== -->
+  <!-- MODAL: INICIAR SESIÓN -->
   <div class="modal-fondo" id="modal-login" style="display:none">
     <div class="modal">
-
       <div class="modal-cabecera">
         <h3>🔐 Iniciar Sesión</h3>
         <button class="btn-cerrar" onclick="cerrarLogin()">&times;</button>
       </div>
-
       <div class="modal-cuerpo">
-        <!-- Aquí aparecen los mensajes de error o éxito -->
         <div id="msg-login"></div>
-
         <form id="form-login">
           <div class="form-grupo">
             <label for="login-email">Email</label>
@@ -301,13 +157,9 @@
           </div>
           <button type="submit" class="btn btn-primario" style="width:100%">Iniciar Sesión</button>
         </form>
-
         <p style="text-align:center; margin-top:1rem; color:var(--gris)">
-          ¿No tienes cuenta?
-          <a href="#" onclick="abrirRegistro()">Regístrate aquí</a>
+          ¿No tienes cuenta? <a href="#" onclick="abrirRegistro()">Regístrate aquí</a>
         </p>
-
-        <!-- Datos de prueba para que el profesor o evaluador pueda entrar fácilmente -->
         <div style="margin-top:1rem; padding:0.8rem; background:var(--crema);
                     border-radius:8px; font-size:0.85rem; color:var(--gris)">
           <strong>Cuentas de prueba:</strong><br>
@@ -315,25 +167,18 @@
           Cliente: juan@test.com / test123
         </div>
       </div>
-
     </div>
   </div>
 
-
-  <!-- ===================================================
-       MODAL: REGISTRO DE NUEVO USUARIO
-       =================================================== -->
+  <!-- MODAL: REGISTRO -->
   <div class="modal-fondo" id="modal-registro" style="display:none">
     <div class="modal">
-
       <div class="modal-cabecera">
         <h3>📝 Crear Cuenta</h3>
         <button class="btn-cerrar" onclick="cerrarRegistro()">&times;</button>
       </div>
-
       <div class="modal-cuerpo">
         <div id="msg-registro"></div>
-
         <form id="form-registro">
           <div class="form-grupo">
             <label for="reg-id">Número de Identificación</label>
@@ -357,40 +202,26 @@
           </div>
           <div class="form-grupo">
             <label for="reg-contrasena">Contraseña (mínimo 6 caracteres)</label>
-            <input type="password" id="reg-contrasena" required minlength="6" placeholder="Tu contraseña">
+            <input type="password" id="reg-contrasena" required minlength="6">
           </div>
           <button type="submit" class="btn btn-primario" style="width:100%">Crear Cuenta</button>
         </form>
-
         <p style="text-align:center; margin-top:1rem; color:var(--gris)">
-          ¿Ya tienes cuenta?
-          <a href="#" onclick="abrirLogin()">Inicia sesión aquí</a>
+          ¿Ya tienes cuenta? <a href="#" onclick="abrirLogin()">Inicia sesión aquí</a>
         </p>
       </div>
-
     </div>
   </div>
 
-
-  <!-- ===================================================
-       SCRIPTS
-       El orden importa: primero los datos, luego la auth,
-       luego la lógica de la página.
-       =================================================== -->
   <script src="js/datos.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/inicio.js"></script>
-
   <script>
-    // Función para abrir/cerrar el menú en móvil
     function toggleMenu() {
-      var hamburguesa = document.getElementById('hamburguesa');
-      var menu        = document.getElementById('navbar-menu');
-      hamburguesa.classList.toggle('activo');
-      menu.classList.toggle('activo');
+      document.getElementById('hamburguesa').classList.toggle('activo');
+      document.getElementById('navbar-menu').classList.toggle('activo');
     }
 
-    // Al cargar la página: inicializar datos y actualizar el navbar
     document.addEventListener('DOMContentLoaded', function() {
       inicializarAuth();
     });

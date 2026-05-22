@@ -27,38 +27,35 @@
     </div>
   </nav>
 
-  <!-- ===== ENCABEZADO ===== -->
+  <!-- ENCABEZADO -->
   <div class="contacto-header">
     <div class="contenedor">
       <h1>📬 Contáctanos</h1>
-      <p>Estamos aquí para ayudarte. Escríbenos o visítanos.</p>
+      <p>Estamos aquí para ayudarte</p>
     </div>
   </div>
 
-  <!-- ===== INFORMACIÓN DE CONTACTO Y MAPA ===== -->
+  <!-- INFORMACIÓN Y MAPA -->
   <section class="seccion">
     <div class="contenedor">
       <div class="contacto-grid">
 
-        <!-- Información -->
+        <!-- Datos de contacto -->
         <div>
-          <h2 style="color:var(--primario); margin-bottom:1.5rem">¿Cómo llegar?</h2>
-
           <div class="contacto-info-item">
             <span class="contacto-icono">📍</span>
             <div>
               <h4>Dirección</h4>
-              <p>Carrera 5 #12-34, Vereda El Carmen<br>
-                 Santa Bárbara, Antioquia, Colombia</p>
+              <p>Carrera 5 #12-34, Vereda El Carmen<br>Santa Bárbara, Antioquia</p>
             </div>
           </div>
 
           <div class="contacto-info-item">
             <span class="contacto-icono">📞</span>
             <div>
-              <h4>Teléfono</h4>
+              <h4>Teléfono / WhatsApp</h4>
               <p>(604) 555 1234</p>
-              <p>WhatsApp: 310 555 6789</p>
+              <p>310 555 6789</p>
             </div>
           </div>
 
@@ -67,37 +64,25 @@
             <div>
               <h4>Correo Electrónico</h4>
               <p>info@rincondelcarmen.com</p>
-              <p>reservas@rincondelcarmen.com</p>
             </div>
           </div>
 
           <div class="contacto-info-item">
             <span class="contacto-icono">🕐</span>
             <div>
-              <h4>Horario de Atención</h4>
-              <p>Recepción: 24 horas, todos los días</p>
-              <p>Reservas: Lun - Dom de 8am a 8pm</p>
-            </div>
-          </div>
-
-          <div class="contacto-info-item">
-            <span class="contacto-icono">🚗</span>
-            <div>
-              <h4>Cómo Llegar</h4>
-              <p>Desde Medellín: 2 horas por la vía Panamericana.</p>
-              <p>Servicio de transporte disponible desde el terminal (consultar).</p>
+              <h4>Horario</h4>
+              <p>Recepción: 24 horas</p>
+              <p>Reservas: Lun - Dom, 8am a 8pm</p>
             </div>
           </div>
         </div>
 
-        <!-- Mapa (placeholder) -->
+        <!-- Mapa -->
         <div>
-          <h2 style="color:var(--primario); margin-bottom:1.5rem">Ubicación</h2>
           <div class="mapa-contenedor">
             <div style="font-size:3rem">🗺️</div>
             <h3 style="color:var(--primario)">El Rincón del Carmen</h3>
             <p style="color:var(--gris)">Santa Bárbara, Antioquia</p>
-            <p style="color:var(--gris); font-size:0.85rem">Carrera 5 #12-34, Vereda El Carmen</p>
             <a href="https://maps.google.com" target="_blank" rel="noopener"
                class="btn btn-primario" style="margin-top:1rem">
               Ver en Google Maps
@@ -109,44 +94,25 @@
     </div>
   </section>
 
-  <!-- ===== FORMULARIO DE CONTACTO ===== -->
+  <!-- FORMULARIO DE CONTACTO -->
   <section class="seccion" style="background-color: var(--crema)">
     <div class="contenedor">
       <div class="seccion-titulo">
         <h2>Envíanos un Mensaje</h2>
         <div class="divider"></div>
-        <p>Responderemos en menos de 24 horas</p>
       </div>
 
-      <div style="max-width: 600px; margin: 0 auto">
+      <div style="max-width:600px; margin:0 auto">
         <div class="contacto-card">
-
-          <!-- Mensaje de confirmación -->
           <div id="msg-contacto"></div>
-
-          <!-- return false evita que la página se recargue -->
-          <form onsubmit="enviarFormularioContacto(); return false;">
+          <form onsubmit="enviarMensaje(); return false;">
             <div class="form-grupo">
-              <label for="c-nombre">Nombre Completo</label>
+              <label for="c-nombre">Nombre</label>
               <input type="text" id="c-nombre" required placeholder="Tu nombre">
             </div>
             <div class="form-grupo">
               <label for="c-email">Email</label>
               <input type="email" id="c-email" required placeholder="correo@ejemplo.com">
-            </div>
-            <div class="form-grupo">
-              <label for="c-telefono">Teléfono (opcional)</label>
-              <input type="tel" id="c-telefono" placeholder="Ej: 3001234567">
-            </div>
-            <div class="form-grupo">
-              <label for="c-asunto">Asunto</label>
-              <select id="c-asunto">
-                <option>Información sobre reservas</option>
-                <option>Reserva de salón de eventos</option>
-                <option>Tarifas y precios</option>
-                <option>Servicio de transporte</option>
-                <option>Otro</option>
-              </select>
             </div>
             <div class="form-grupo">
               <label for="c-mensaje">Mensaje</label>
@@ -156,42 +122,12 @@
               Enviar Mensaje ✉️
             </button>
           </form>
-
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== CONTACTO RÁPIDO ===== -->
-  <section class="seccion">
-    <div class="contenedor">
-      <div class="seccion-titulo">
-        <h2>Contáctanos Rápido</h2>
-        <div class="divider"></div>
-      </div>
-
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
-                  gap:1.5rem; text-align:center">
-        <div class="card" style="padding:2rem">
-          <div style="font-size:2.5rem; margin-bottom:0.8rem">📞</div>
-          <h3 style="color:var(--primario); margin-bottom:0.5rem">Llamada</h3>
-          <p style="color:var(--gris)">(604) 555 1234</p>
-        </div>
-        <div class="card" style="padding:2rem">
-          <div style="font-size:2.5rem; margin-bottom:0.8rem">💬</div>
-          <h3 style="color:var(--primario); margin-bottom:0.5rem">WhatsApp</h3>
-          <p style="color:var(--gris)">310 555 6789</p>
-        </div>
-        <div class="card" style="padding:2rem">
-          <div style="font-size:2.5rem; margin-bottom:0.8rem">✉️</div>
-          <h3 style="color:var(--primario); margin-bottom:0.5rem">Email</h3>
-          <p style="color:var(--gris)">info@rincondelcarmen.com</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FOOTER ===== -->
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="contenedor">
       <div class="footer-grid">
@@ -207,14 +143,13 @@
         </div>
         <div class="footer-columna">
           <h3>Contacto</h3>
-          <p>📍 Carrera 5 #12-34, El Carmen</p>
           <p>📞 (604) 555 1234</p>
+          <p>✉️ info@rincondelcarmen.com</p>
         </div>
       </div>
       <p class="footer-copy">© 2025 Hotel El Rincón del Carmen.</p>
     </div>
   </footer>
-
 
   <!-- MODALES DE AUTH -->
   <div class="modal-fondo" id="modal-login" style="display:none">
@@ -285,10 +220,8 @@
     </div>
   </div>
 
-
   <script src="js/datos.js"></script>
   <script src="js/auth.js"></script>
-
   <script>
     function toggleMenu() {
       document.getElementById('hamburguesa').classList.toggle('activo');
@@ -299,25 +232,11 @@
       inicializarAuth();
     });
 
-    // Simular el envío del formulario de contacto
-    // En un proyecto real esto enviaría un email a un servidor
-    function enviarFormularioContacto() {
-      var nombre  = document.getElementById('c-nombre').value;
-      var mensaje = document.getElementById('c-mensaje').value;
-
-      // Mostrar mensaje de éxito
+    function enviarMensaje() {
+      var nombre = document.getElementById('c-nombre').value;
       document.getElementById('msg-contacto').innerHTML =
-        '<div class="alerta alerta-exito">' +
-          '✅ ¡Gracias, ' + nombre + '! Tu mensaje fue enviado. Te responderemos pronto.' +
-        '</div>';
-
-      // Limpiar el formulario
+        '<div class="alerta alerta-exito">✅ ¡Gracias, ' + nombre + '! Te responderemos pronto.</div>';
       document.querySelector('form').reset();
-
-      // Ocultar el mensaje después de 5 segundos
-      setTimeout(function() {
-        document.getElementById('msg-contacto').innerHTML = '';
-      }, 5000);
     }
   </script>
 
